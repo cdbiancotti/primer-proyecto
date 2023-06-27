@@ -5,7 +5,6 @@
 {% endblock title_head %}
 
 {% block h1_header %}
-{% comment %} Se creo el perro con nombre {{perro.nombre}} y edad {{perro.edad}} {% endcomment %}
 Listado de Perros
 {% endblock h1_header %}
 
@@ -13,18 +12,24 @@ Listado de Perros
 <button>
     <a class="navbar-brand" href={% url 'inicio:crear_perro' %}>Crear perro</a>
 </button>
-<form action="" method="get">
+{% comment %} <form action="" method="get">
     {{formulario}}
     <button>Buscar</button>
-</form>
+</form> {% endcomment %}
 
 {% if perros %}
 {% for perro in perros %}
-{% comment %} <li>Nombre: {{perro.nombre}} - Edad: {{perro.edad}}</li> {% endcomment %}
 <li>
     {{perro}}
-    <a href={% url 'inicio:eliminar_perro' perro.id %}>Eliminar</a>
-    <a href={% url 'inicio:modificar_perro' perro.id %}>Modificar</a>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:mostrar_perro' perro.id %}>Ver mas</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:modificar_perro' perro.id %}>Modificar</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:eliminar_perro' perro.id %}>Eliminar</a>
+    </button>
 </li>
 {% endfor %}
 {% else %}
